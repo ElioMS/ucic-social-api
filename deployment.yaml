@@ -50,7 +50,7 @@ spec:
           # [END esp]
           ports:
             - containerPort: 8081
-        - name: springboot-gcp
-          image: gcr.io/testing-ucic/springboot-gcp:latest
+        - name: ucic-social-api
+          image: gcr.io/testing-ucic/ucic-social-api:latest
           ports:
             - containerPort: 8080
