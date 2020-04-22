@@ -1,0 +1,139 @@
+# [START swagger]
+swagger: "2.0"
+info:
+  description: "Test google endpoints."
+  title: "Endpoints Example"
+  version: "1.0.0"
+host: "test-api.endpoints.testing-ucic.cloud.goog"
+x-google-endpoints:
+  - name: "test-api.endpoints.testing-ucic.cloud.goog"
+    target: "34.71.234.187"
+# [END swagger]
+consumes:
+  - "application/json"
+produces:
+  - "application/json"
+schemes:
+  # Uncomment the next line if you configure SSL for this API.
+  # - "https"
+  - "http"
+paths:
+  "/commentaries":
+    get:
+      tags:
+      - "commentary"
+      summary: "List commentaries"
+      description: "List commentaries for specific resource"
+      operationId: "ListCommentaries"
+      produces:
+        - "application/json"
+      parameters:
+        - name: "type"
+          in: "query"
+          type: "string"
+          required: true
+          enum:
+           - webinar
+           - cursos
+        - name: "resourceId"
+          in: "query"
+          type: "integer"
+          required: true
+      responses:
+        200:
+          description: OK
+    post:
+      tags:
+      - "commentary"
+      summary: "Add new commentary"
+      description: "Add a new commentary for specific resource"
+      operationId: "AddCommentary"
+      produces:
+        - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Commentary object"
+        required: true
+        schema:
+          $ref: "#/definitions/Commentary"
+      responses:
+        200:
+          description: OK
+  "/likes":
+    get:
+      tags:
+      - "likes"
+      summary: "List likes"
+      description: "List likes from specific resource"
+      operationId: "ListLikes"
+      produces:
+        - "application/json"
+      parameters:
+        - name: "type"
+          in: "query"
+          type: "string"
+          required: true
+          enum:
+           - webinar
+           - cursos
+        - name: "resourceId"
+          in: "query"
+          type: "integer"
+          required: true
+      responses:
+        200:
+          description: OK
+    post:
+      tags:
+      - "likes"
+      summary: "Add new like"
+      description: "Add a new like for specific resource"
+      operationId: "AddLike"
+      produces:
+        - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Like object"
+        required: true
+        schema:
+          $ref: "#/definitions/Like"
+      responses:
+        201:
+          description: CREATED
+definitions:
+  Commentary:
+    type: "object"
+    properties:
+      content:
+        type: "string"
+        example: "Buen curso"
+      type: 
+        type: "string"
+        example: "webinar" 
+      userId:
+        type: "integer"
+        example: 1
+      resourceId:
+        type: "integer"
+        example: 1
+      date:
+        type: string
+        example: "2020-04-20"
+  Like:
+    type: "object"
+    properties:
+      type: 
+        type: "string"
+        example: "webinar" 
+      userId:
+        type: "integer"
+        example: 1
+      resourceId:
+        type: "integer"
+        example: 1
+      date:
+        type: string
+        example: "2020-04-20"
+      
