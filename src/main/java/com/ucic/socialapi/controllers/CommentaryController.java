@@ -13,19 +13,18 @@ import java.util.List;
 
 @CrossOrigin(origins = "*")
 @RestController
-@RequestMapping("/commentaries")
 public class CommentaryController {
 
     @Autowired
     private CommentaryService commentaryService;
 
-    @GetMapping
+    @GetMapping("/commentaries")
     public ResponseEntity<?> index(@RequestParam String type, @RequestParam Integer resourceId) {
         List<Commentary> commentaries = commentaryService.findAll(type, resourceId);
         return ResponseEntity.ok(commentaries);
     }
 
-    @PostMapping
+    @PostMapping("/commentaries")
     public ResponseEntity<?> store(@Valid @RequestBody CommentaryRequest body) throws ParseException {
         Commentary commentary = commentaryService.save(body);
         return ResponseEntity.ok(commentary);
