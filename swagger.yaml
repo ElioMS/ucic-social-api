@@ -3,7 +3,7 @@ swagger: "2.0"
 info:
   description: "Test google endpoints."
   title: "Endpoints Example"
-  version: "1.0.0"
+  version: "2.0.0"
 host: "test-api.endpoints.testing-ucic.cloud.goog"
 x-google-endpoints:
   - name: "test-api.endpoints.testing-ucic.cloud.goog"
