@@ -13,7 +13,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/commentaries")
-@CrossOrigin(origins = "*", methods= {RequestMethod.GET,RequestMethod.POST})
+@CrossOrigin(origins = "*", methods= {RequestMethod.GET, RequestMethod.POST})
 public class CommentaryController {
 
     @Autowired

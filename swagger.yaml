@@ -8,6 +8,7 @@ host: "test-api.endpoints.testing-ucic.cloud.goog"
 x-google-endpoints:
   - name: "test-api.endpoints.testing-ucic.cloud.goog"
     target: "35.232.103.156"
+    allowCors: true
 # [END swagger]
 consumes:
   - "application/json"
