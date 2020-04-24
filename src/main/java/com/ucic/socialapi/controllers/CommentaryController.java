@@ -11,9 +11,9 @@ import javax.validation.Valid;
 import java.text.ParseException;
 import java.util.List;
 
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/commentaries")
-@CrossOrigin(origins = "*", methods= {RequestMethod.GET, RequestMethod.POST})
 public class CommentaryController {
 
     @Autowired
