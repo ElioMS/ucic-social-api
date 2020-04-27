@@ -58,6 +58,8 @@ paths:
         required: true
         schema:
           $ref: "#/definitions/Commentary"
+      security:
+        - api_key: []
       responses:
         200:
           description: OK
@@ -100,6 +102,8 @@ paths:
         required: true
         schema:
           $ref: "#/definitions/Like"
+      security:
+        - api_key: []
       responses:
         201:
           description: CREATED
@@ -154,4 +158,9 @@ definitions:
       date:
         type: string
         example: "2020-04-20"
-      
+securityDefinitions:
+  # This section configures basic authentication with an API key.
+  api_key:
+    type: "apiKey"
+    name: "key"
+    in: "query"
