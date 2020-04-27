@@ -19,7 +19,7 @@ public class CommentaryServiceImpl implements CommentaryService {
 
     @Override
     public List<Commentary> findAll(String type, Integer resourceId) {
-        return commentaryRepository.findByTypeAndResourceId(type, resourceId);
+        return commentaryRepository.findByTypeAndResourceIdOrderByDateAsc(type, resourceId);
     }
 
     @Override

@@ -103,6 +103,23 @@ paths:
       responses:
         201:
           description: CREATED
+  /users/{documentNumber}:
+    get:
+      tags:
+        - "users"
+      summary: "Find user"
+      description: "Find user by document number"
+      operationId: "FindUser"
+      produces:
+        - "application/json"
+      parameters:
+        - name: "documentNumber"
+          in: "path"
+          type: "string"
+          required: true
+      responses:
+        200:
+          description: OK
 definitions:
   Commentary:
     type: "object"

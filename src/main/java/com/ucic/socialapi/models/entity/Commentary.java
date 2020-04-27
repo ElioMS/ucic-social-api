@@ -34,6 +34,10 @@ public class Commentary implements Serializable {
     @Temporal(TemporalType.DATE)
     private Date createdAt;
 
+//    @OneToOne(optional = false)
+//    @JoinColumn(name = "id", updatable = false, insertable = false)
+//    private User user;
+
     @PrePersist
     public void prePersist() {
         createdAt = new Date();
