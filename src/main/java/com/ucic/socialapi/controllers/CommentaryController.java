@@ -12,7 +12,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.text.DateFormat;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -32,14 +34,17 @@ public class CommentaryController {
         List<Commentary> commentaries = commentaryService.findAll(type, resourceId);
 
         List<CommentaryResponse> comments = new ArrayList<>();
+        DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
 
         commentaries.stream().forEach(i -> {
+
+            String date = formatter.format(i.getDate());
 
             User user = userService.findByDocumentNumber(i.getUserId().toString());
 
             CommentaryResponse l = new CommentaryResponse();
             l.setId(i.getId());
-            l.setDate(i.getDate());
+            l.setDate(date);
             l.setName(user.getName());
             l.setSurname(user.getLastName());
             l.setAlias(user.alias().toUpperCase());
@@ -52,7 +57,7 @@ public class CommentaryController {
         HashMap<String, Object> response = new HashMap<String, Object>();
 
         response.put("total", commentaries.size());
-        response.put("data", commentaries);
+        response.put("data", comments);
 
         return ResponseEntity.ok(response);
     }
@@ -60,7 +65,21 @@ public class CommentaryController {
     @PostMapping("/commentaries")
     public ResponseEntity<?> store(@Valid @RequestBody CommentaryRequest body) throws ParseException {
         Commentary commentary = commentaryService.save(body);
-        return ResponseEntity.ok(commentary);
+
+        User user = userService.findByDocumentNumber(body.getUserId().toString());
+
+        DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+        String today = formatter.format(commentary.getDate());
+
+        CommentaryResponse response = new CommentaryResponse();
+        response.setId(commentary.getId());
+        response.setDate(today);
+        response.setName(user.getName());
+        response.setSurname(user.getLastName());
+        response.setAlias(user.alias().toUpperCase());
+        response.setContent(commentary.getContent());
+
+        return ResponseEntity.ok(response);
     }
 
 }

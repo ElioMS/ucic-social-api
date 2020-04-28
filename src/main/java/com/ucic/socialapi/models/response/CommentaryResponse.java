@@ -7,7 +7,7 @@ public class CommentaryResponse {
     public Long id;
     public String name;
     public String surname;
-    public Date date;
+    public String date;
     public String alias;
     public String content;
 
@@ -35,11 +35,11 @@ public class CommentaryResponse {
         this.surname = surname;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
