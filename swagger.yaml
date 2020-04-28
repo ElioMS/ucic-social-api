@@ -3,11 +3,11 @@ swagger: "2.0"
 info:
   description: "Social API endpoints."
   title: "UCIC - Social API"
-  version: "3.0.0"
+  version: "4.0.0"
 host: "test-api.endpoints.testing-ucic.cloud.goog"
 x-google-endpoints:
   - name: "test-api.endpoints.testing-ucic.cloud.goog"
-    target: "35.232.103.156"
+    target: "34.71.119.203"
     allowCors: true
 # [END swagger]
 consumes:
