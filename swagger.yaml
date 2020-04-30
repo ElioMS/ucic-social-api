@@ -3,7 +3,7 @@ swagger: "2.0"
 info:
   description: "Social API endpoints."
   title: "UCIC - Social API"
-  version: "4.0.0"
+  version: "4.0.1"
 host: "test-api.endpoints.testing-ucic.cloud.goog"
 x-google-endpoints:
   - name: "test-api.endpoints.testing-ucic.cloud.goog"
