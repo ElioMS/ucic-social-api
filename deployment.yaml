@@ -18,7 +18,7 @@ metadata:
   name: esp-echo
 spec:
   ports:
-    - port: 80
+    - port: 443
       targetPort: 8081
       protocol: TCP
       name: http
