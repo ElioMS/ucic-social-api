@@ -16,13 +16,13 @@ produces:
   - "application/json"
 schemes:
   # Uncomment the next line if you configure SSL for this API.
-  # - "https"
+  - "https"
   - "http"
 paths:
   "/commentaries":
     get:
       tags:
-      - "commentary"
+        - "commentary"
       summary: "List commentaries"
       description: "List commentaries for specific resource"
       operationId: "ListCommentaries"
@@ -34,8 +34,8 @@ paths:
           type: "string"
           required: true
           enum:
-           - webinar
-           - cursos
+            - webinar
+            - cursos
         - name: "resourceId"
           in: "query"
           type: "integer"
@@ -45,19 +45,19 @@ paths:
           description: OK
     post:
       tags:
-      - "commentary"
+        - "commentary"
       summary: "Add new commentary"
       description: "Add a new commentary for specific resource"
       operationId: "AddCommentary"
       produces:
         - "application/json"
       parameters:
-      - in: "body"
-        name: "body"
-        description: "Commentary object"
-        required: true
-        schema:
-          $ref: "#/definitions/Commentary"
+        - in: "body"
+          name: "body"
+          description: "Commentary object"
+          required: true
+          schema:
+            $ref: "#/definitions/Commentary"
       security:
         - api_key: []
       responses:
@@ -66,7 +66,7 @@ paths:
   "/likes":
     get:
       tags:
-      - "likes"
+        - "likes"
       summary: "List likes"
       description: "List likes from specific resource"
       operationId: "ListLikes"
@@ -78,8 +78,8 @@ paths:
           type: "string"
           required: true
           enum:
-           - webinar
-           - cursos
+            - webinar
+            - cursos
         - name: "resourceId"
           in: "query"
           type: "integer"
@@ -89,19 +89,19 @@ paths:
           description: OK
     post:
       tags:
-      - "likes"
+        - "likes"
       summary: "Add new like"
       description: "Add a new like for specific resource"
       operationId: "AddLike"
       produces:
         - "application/json"
       parameters:
-      - in: "body"
-        name: "body"
-        description: "Like object"
-        required: true
-        schema:
-          $ref: "#/definitions/Like"
+        - in: "body"
+          name: "body"
+          description: "Like object"
+          required: true
+          schema:
+            $ref: "#/definitions/Like"
       security:
         - api_key: []
       responses:
@@ -131,9 +131,9 @@ definitions:
       content:
         type: "string"
         example: "Buen curso"
-      type: 
+      type:
         type: "string"
-        example: "webinar" 
+        example: "webinar"
       userId:
         type: "integer"
         example: 1
@@ -146,9 +146,9 @@ definitions:
   Like:
     type: "object"
     properties:
-      type: 
+      type:
         type: "string"
-        example: "webinar" 
+        example: "webinar"
       userId:
         type: "integer"
         example: 1
