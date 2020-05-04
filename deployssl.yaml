@@ -1,4 +1,4 @@
-# Copyright 2015 Google Inc.
+# Copyright 2016 Google Inc. All Rights Reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+
 apiVersion: v1
 kind: Service
 metadata:
@@ -19,7 +20,7 @@ metadata:
 spec:
   ports:
     - port: 80
-      targetPort: 8081
+      targetPort: 8080
       protocol: TCP
       name: http
     - port: 443
@@ -45,17 +46,15 @@ spec:
           secret:
             secretName: nginx-ssl
       containers:
-        # [START esp]
         - name: esp
           image: gcr.io/endpoints-release/endpoints-runtime:1
           args: [
-            "--http_port=8080",
-            "--ssl_port=443",
-            "--backend=127.0.0.1:8081",
-            "--service=test-api.endpoints.testing-ucic.cloud.goog",
-            "--rollout_strategy=managed",
+            "--http_port", "8080",
+            "--ssl_port", "443",
+            "--backend", "127.0.0.1:8081",
+            "--service", "test-api.endpoints.testing-ucic.cloud.goog",
+            "--rollout_strategy", "managed",
           ]
-          # [END esp]
           ports:
             - containerPort: 8080
             - containerPort: 443
