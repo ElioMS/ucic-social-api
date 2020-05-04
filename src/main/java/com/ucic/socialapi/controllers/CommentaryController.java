@@ -29,6 +29,11 @@ public class CommentaryController {
     @Autowired
     private UserService userService;
 
+    @GetMapping("/")
+    public ResponseEntity<?> principal() {
+        return ResponseEntity.ok("OK");
+    }
+
     @GetMapping("/commentaries")
     public ResponseEntity<?> index(@RequestParam String type, @RequestParam Integer resourceId) {
         List<Commentary> commentaries = commentaryService.findAll(type, resourceId);
