@@ -30,6 +30,17 @@ spec:
   type: LoadBalancer
 ---
 apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: tls-ingress
+spec:
+  tls:
+    - secretName: nginx-ssl
+  backend:
+    serviceName: esp-echo
+    servicePort: 80
+---
+apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
   name: esp-echo
