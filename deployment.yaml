@@ -27,7 +27,7 @@ spec:
       name: https
   selector:
     app: esp-echo
-  type: LoadBalancer
+  type: NodePort
 ---
 apiVersion: extensions/v1beta1
 kind: Ingress
