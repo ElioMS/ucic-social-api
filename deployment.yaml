@@ -40,6 +40,10 @@ spec:
       labels:
         app: esp-echo
     spec:
+      volumes:
+        - name: nginx-ssl
+          secret:
+            secretName: nginx-ssl
       containers:
         # [START esp]
         - name: esp
