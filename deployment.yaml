@@ -39,7 +39,7 @@ metadata:
     kubernetes.io/ingress.allow-http: "false"
 spec:
   tls:
-    - secretName: nginx-ssl
+    - secretName: test-ssl
   backend:
     serviceName: spring-boot-service
     servicePort: 8080
