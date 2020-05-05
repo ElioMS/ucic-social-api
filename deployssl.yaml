@@ -27,18 +27,7 @@ spec:
       name: https
   selector:
     app: esp-echo
-  type: NodePort
----
-apiVersion: extensions/v1beta1
-kind: Ingress
-metadata:
-  name: tls-ingress
-spec:
-  tls:
-    - secretName: nginx-ssl
-  backend:
-    serviceName: esp-echo
-    servicePort: 80
+  type: LoadBalancer
 ---
 apiVersion: extensions/v1beta1
 kind: Deployment
@@ -52,9 +41,9 @@ spec:
         app: esp-echo
     spec:
       volumes:
-        - name: nginx-ssl
+        - name: test-ssl
           secret:
-            secretName: nginx-ssl
+            secretName: test-ssl
       containers:
         # [START esp]
         - name: esp
@@ -63,7 +52,7 @@ spec:
             "--http_port=8081",
             "--ssl_port=443",
             "--backend=127.0.0.1:8080",
-            "--service=test-api.endpoints.testing-ucic.cloud.goog",
+            "--service=test-api.ucic.pe",
             "--rollout_strategy=managed",
           ]
           # [END esp]
@@ -72,7 +61,7 @@ spec:
             - containerPort: 443
           volumeMounts:
             - mountPath: /etc/nginx/ssl
-              name: nginx-ssl
+              name: test-ssl
               readOnly: true
         - name: ucic-social-api
           image: gcr.io/testing-ucic/ucic-social-api:latest
