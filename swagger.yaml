@@ -7,7 +7,7 @@ info:
 host: "test-api.endpoints.testing-ucic.cloud.goog"
 x-google-endpoints:
   - name: "test-api.endpoints.testing-ucic.cloud.goog"
-    target: "34.71.233.169"
+    target: "34.69.7.79"
     allowCors: true
 # [END swagger]
 consumes:
