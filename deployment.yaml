@@ -4,8 +4,8 @@ metadata:
   name: spring-boot-service
 spec:
   ports:
-    - port: 8080
-      targetPort: 8080
+    - port: 80
+      targetPort: 8081
       name: http
   selector:
     app: spring-boot-app
@@ -33,14 +33,14 @@ spec:
         - name: esp
           image: gcr.io/endpoints-release/endpoints-runtime:1
           args: [
-            "--http_port=8080",
+            "--http_port=8081",
             "--ssl_port=443",
             "--backend=127.0.0.1:8080",
-            "--service=test-api.endpoints.testing-ucic.cloud.goog",
+            "--service=test-api.ucic.pe",
             "--rollout_strategy=managed",
           ]
           ports:
-            - containerPort: 8080
+            - containerPort: 8081
             - containerPort: 443
           volumeMounts:
             - mountPath: /etc/nginx/ssl
