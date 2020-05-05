@@ -44,7 +44,7 @@ spec:
             - containerPort: 443
           volumeMounts:
             - mountPath: /etc/nginx/ssl
-              name: nginx-ssl
+              name: test-ssl
               readOnly: true
         - name: spring-boot-app
           image: gcr.io/testing-ucic/ucic-social-api:latest
