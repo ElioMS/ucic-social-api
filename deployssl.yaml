@@ -8,6 +8,9 @@ spec:
       targetPort: 8081
       protocol: TCP
       name: http
+    - port: 443
+      protocol: TCP
+      name: https
   selector:
     app: esp-echo
   type: LoadBalancer
@@ -23,17 +26,27 @@ spec:
       labels:
         app: esp-echo
     spec:
+      volumes:
+        - name: nginx-ssl
+          secret:
+            secretName: nginx-ssl
       containers:
         - name: esp
           image: gcr.io/endpoints-release/endpoints-runtime:1
           args: [
             "--http_port=8081",
+            "--ssl_port", "443",
             "--backend=127.0.0.1:8080",
             "--service=test-api.endpoints.testing-ucic.cloud.goog",
             "--rollout_strategy=managed",
           ]
           ports:
             - containerPort: 8081
+            - containerPort: 443
+          volumeMounts:
+            - mountPath: /etc/nginx/ssl
+              name: nginx-ssl
+              readOnly: true
         - name: ucic-social-api
           image: gcr.io/testing-ucic/ucic-social-api:latest
           ports:
