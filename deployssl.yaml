@@ -29,7 +29,7 @@ spec:
           args: [
             "--http_port=8081",
             "--backend=127.0.0.1:8080",
-            "--service=test-api.ucic.pe",
+            "--service=test-api.endpoints.testing-ucic.cloud.goog",
             "--rollout_strategy=managed",
           ]
           ports:
