@@ -5,7 +5,7 @@ metadata:
 spec:
   ports:
     - port: 8080
-      targetPort: 8081
+      targetPort: 8080
       name: http
   selector:
     app: spring-boot-app
@@ -26,16 +26,6 @@ spec:
         app: spring-boot-app
     spec:
       containers:
-        - name: esp
-          image: gcr.io/endpoints-release/endpoints-runtime:1
-          args: [
-            "--http_port=8081",
-            "--backend=127.0.0.1:8080",
-            "--service=test-api.ucic.pe",
-            "--rollout_strategy=managed",
-          ]
-          ports:
-            - containerPort: 8081
         - name: spring-boot-app
           image: gcr.io/testing-ucic/ucic-social-api:latest
           ports:
