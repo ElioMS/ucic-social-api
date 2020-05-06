@@ -35,7 +35,6 @@ spec:
           image: gcr.io/endpoints-release/endpoints-runtime:1
           args: [
             "--http_port=8081",
-            "--ssl_port", "443",
             "--backend=127.0.0.1:8080",
             "--service=test-api.endpoints.testing-ucic.cloud.goog",
             "--rollout_strategy=managed",
