@@ -4,7 +4,7 @@ info:
   description: "Social API endpoints."
   title: "UCIC - Social API"
   version: "5.0.4"
-host: "testing-ucic.uc.r.appspot.com"
+host: "testing-ucic.appspot.com"
 # [END swagger]
 consumes:
   - "application/json"
