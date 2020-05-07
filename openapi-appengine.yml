@@ -1,0 +1,161 @@
+# [START swagger]
+swagger: "2.0"
+info:
+  description: "Social API endpoints."
+  title: "UCIC - Social API"
+  version: "5.0.4"
+host: "testing-ucic.uc.r.appspot.com"
+# [END swagger]
+consumes:
+  - "application/json"
+produces:
+  - "application/json"
+schemes:
+  # Uncomment the next line if you configure SSL for this API.
+  - "https"
+paths:
+  "/commentaries":
+    get:
+      tags:
+        - "commentary"
+      summary: "List commentaries"
+      description: "List commentaries for specific resource"
+      operationId: "ListCommentaries"
+      produces:
+        - "application/json"
+      parameters:
+        - name: "type"
+          in: "query"
+          type: "string"
+          required: true
+          enum:
+            - webinar
+            - cursos
+        - name: "resourceId"
+          in: "query"
+          type: "integer"
+          required: true
+      responses:
+        200:
+          description: OK
+    post:
+      tags:
+        - "commentary"
+      summary: "Add new commentary"
+      description: "Add a new commentary for specific resource"
+      operationId: "AddCommentary"
+      produces:
+        - "application/json"
+      parameters:
+        - in: "body"
+          name: "body"
+          description: "Commentary object"
+          required: true
+          schema:
+            $ref: "#/definitions/Commentary"
+      security:
+        - api_key: []
+      responses:
+        200:
+          description: OK
+  "/likes":
+    get:
+      tags:
+        - "likes"
+      summary: "List likes"
+      description: "List likes from specific resource"
+      operationId: "ListLikes"
+      produces:
+        - "application/json"
+      parameters:
+        - name: "type"
+          in: "query"
+          type: "string"
+          required: true
+          enum:
+            - webinar
+            - cursos
+        - name: "resourceId"
+          in: "query"
+          type: "integer"
+          required: true
+      responses:
+        200:
+          description: OK
+    post:
+      tags:
+        - "likes"
+      summary: "Add new like"
+      description: "Add a new like for specific resource"
+      operationId: "AddLike"
+      produces:
+        - "application/json"
+      parameters:
+        - in: "body"
+          name: "body"
+          description: "Like object"
+          required: true
+          schema:
+            $ref: "#/definitions/Like"
+      security:
+        - api_key: []
+      responses:
+        201:
+          description: CREATED
+  /users/{documentNumber}:
+    get:
+      tags:
+        - "users"
+      summary: "Find user"
+      description: "Find user by document number"
+      operationId: "FindUser"
+      produces:
+        - "application/json"
+      parameters:
+        - name: "documentNumber"
+          in: "path"
+          type: "string"
+          required: true
+      responses:
+        200:
+          description: OK
+definitions:
+  Commentary:
+    type: "object"
+    properties:
+      content:
+        type: "string"
+        example: "Buen curso"
+      type:
+        type: "string"
+        example: "webinar"
+      userId:
+        type: "integer"
+        example: 1
+      resourceId:
+        type: "integer"
+        example: 1
+      date:
+        type: string
+        example: "2020-04-20"
+  Like:
+    type: "object"
+    properties:
+      type:
+        type: "string"
+        example: "webinar"
+      userId:
+        type: "integer"
+        example: 1
+      resourceId:
+        type: "integer"
+        example: 1
+      date:
+        type: string
+        example: "2020-04-20"
+securityDefinitions:
+  # This section configures basic authentication with an API key.
+  api_key:
+    type: "apiKey"
+    name: "key"
+    in: "query"
