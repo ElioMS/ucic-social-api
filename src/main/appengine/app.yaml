@@ -1,9 +1,2 @@
 runtime: java11
 instance_class: F4
-
-endpoints_api_service:
-  # The following values are to be replaced by information from the output of
-  # 'gcloud endpoints services deploy openapi-appengine.yaml' command.
-  name: testing-ucic.appspot.com
-  rollout_strategy: managed
-# [END configuration]

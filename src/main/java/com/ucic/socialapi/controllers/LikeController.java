@@ -4,6 +4,7 @@ import com.ucic.socialapi.models.entity.Like;
 import com.ucic.socialapi.models.entity.User;
 import com.ucic.socialapi.models.request.LikeRequest;
 import com.ucic.socialapi.models.response.LikeResponse;
+import com.ucic.socialapi.models.response.MessageResponse;
 import com.ucic.socialapi.services.likes.LikeService;
 import com.ucic.socialapi.services.users.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,6 +45,7 @@ public class LikeController {
             l.setName(user.getName());
             l.setSurname(user.getLastName());
             l.setAlias(user.alias().toUpperCase());
+            l.setDocumentNumber(user.getDocumentNumber());
 
             likesResponse.add(l);
         });
@@ -56,8 +58,14 @@ public class LikeController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Like store(@RequestBody LikeRequest body) {
-        return likeService.save(body);
+    public ResponseEntity<?> store(@RequestBody LikeRequest body) {
+
+        if (likeService.checkIfLikeExists(body)) {
+            likeService.delete(body);
+            return ResponseEntity.ok(new MessageResponse("OK"));
+        }
+
+        return new ResponseEntity<>(likeService.save(body), HttpStatus.CREATED);
     }
 
 }

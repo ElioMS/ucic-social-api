@@ -10,6 +10,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class LikeServiceImpl implements LikeService {
@@ -23,7 +24,13 @@ public class LikeServiceImpl implements LikeService {
     }
 
     @Override
+    public boolean checkIfLikeExists(LikeRequest body) {
+        return likeRepository.existsLikeByTypeAndResourceIdAndUserId(body.getType(), body.getResourceId(), body.getUserId());
+    }
+
+    @Override
     public Like save(LikeRequest body) {
+
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
         Date date = null;
 
@@ -40,5 +47,12 @@ public class LikeServiceImpl implements LikeService {
         newLike.setType(body.getType());
 
         return likeRepository.save(newLike);
+
+    }
+
+    @Override
+    public void delete(LikeRequest body) {
+        Like like = likeRepository.findByTypeAndResourceIdAndUserId(body.getType(), body.getResourceId(), body.getUserId());
+        likeRepository.delete(like);
     }
 }

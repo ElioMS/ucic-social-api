@@ -7,6 +7,7 @@ public class LikeResponse {
     public String surname;
     public String date;
     public String alias;
+    public String documentNumber;
 
     public Long getId() {
         return id;
@@ -46,5 +47,13 @@ public class LikeResponse {
 
     public void setAlias(String alias) {
         this.alias = alias;
+    }
+
+    public String getDocumentNumber() {
+        return documentNumber;
+    }
+
+    public void setDocumentNumber(String documentNumber) {
+        this.documentNumber = documentNumber;
     }
 }
