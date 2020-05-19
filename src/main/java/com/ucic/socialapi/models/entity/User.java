@@ -1,11 +1,14 @@
 package com.ucic.socialapi.models.entity;
 
+import org.hibernate.annotations.DynamicUpdate;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 
 @Table(name = "users")
 @Entity
+@DynamicUpdate
 public class User implements Serializable {
 
     @Id
@@ -18,10 +21,10 @@ public class User implements Serializable {
     @Column
     private String name;
 
-    @Column(name = "lastname", nullable = false)
+    @Column(name = "lastname", nullable = true)
     private String lastName;
 
-    @Column(nullable = false)
+    @Column(nullable = true)
     private String email;
 
     @Column
@@ -46,7 +49,14 @@ public class User implements Serializable {
     }
 
     public String alias() {
-        return ""+this.name.charAt(0)+this.lastName.charAt(0);
+
+        String alias = "";
+
+        if (this.name != null && this.lastName != null) {
+            alias = ""+this.name.charAt(0)+this.lastName.charAt(0);
+        }
+
+        return alias;
     }
 
     public Long getId() {

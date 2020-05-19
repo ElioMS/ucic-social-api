@@ -4,6 +4,8 @@ import com.ucic.socialapi.models.entity.User;
 
 public interface UserService {
 
-    public User findByDocumentNumber(String documentNumber);
+    boolean existsUserByDocumentNumber(String documentNumber);
+    User createAnonymousUser(String documentNumber);
+    User findByDocumentNumber(String documentNumber);
 
 }

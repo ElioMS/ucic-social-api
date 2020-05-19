@@ -18,6 +18,21 @@ public class UserController {
 
     @GetMapping("/{documentNumber}")
     public ResponseEntity<?> show(@PathVariable String documentNumber) {
+
+        if (!userService.existsUserByDocumentNumber(documentNumber)) {
+            User user = userService.createAnonymousUser(documentNumber);
+
+            HashMap<String, Object> response = new HashMap<String, Object>();
+
+            response.put("id", user.getId());
+            response.put("documentNumber", user.getDocumentNumber());
+            response.put("name", "");
+            response.put("surname", "");
+            response.put("alias", "");
+
+            return ResponseEntity.ok(response);
+        }
+
         User user =  userService.findByDocumentNumber(documentNumber);
 
         HashMap<String, Object> response = new HashMap<String, Object>();

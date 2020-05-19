@@ -13,6 +13,18 @@ public class UserServiceImpl implements UserService {
     private UserRepository userRepository;
 
     @Override
+    public boolean existsUserByDocumentNumber(String documentNumber) {
+        return userRepository.existsUserByDocumentNumber(documentNumber);
+    }
+
+    @Override
+    public User createAnonymousUser(String documentNumber) {
+        User newUser = new User();
+        newUser.setDocumentNumber(documentNumber);
+        return userRepository.save(newUser);
+    }
+
+    @Override
     public User findByDocumentNumber(String documentNumber) {
         return userRepository.findByDocumentNumber(documentNumber).orElseThrow(
                 () -> new NotFoundException("Usuario no encontrado.")
